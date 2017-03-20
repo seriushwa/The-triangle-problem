@@ -2,7 +2,27 @@
 #include"gtest/gtest.h"
 int triangle(int a,int b,int c)
 {
-	return 0;
+	if((a<1)||(b<1)||(c<1))return 4;//input too small
+	if((a>200)||(b>200)||(c>200))return 4;//input too large
+	if((a+b<=c)||(a+c<=b)||(b+c<=a))return 3;//cannot form a triangle
+	if(a==b)
+	{
+		if(a!=c)return 1;//Isosceles
+		else return 0;//Equilateral
+	}
+	if(a==c)
+	{
+	
+		if(a!=b)return 1;//Isosceles
+		else return 0;//Equilateral
+	}
+	if(b==c)
+	{
+	
+		if(b!=a)return 1;//Isosceles
+		else return 0;//Equilateral
+	}
+	return 2;//Scalene
 }
 
 TEST(Triangle,BoundarySR)
@@ -182,7 +202,7 @@ EXPECT_EQ(4,triangle(100	,100	,0	));
 EXPECT_EQ(1,triangle(100	,100	,1	));
 EXPECT_EQ(1,triangle(100	,100	,2	));
 EXPECT_EQ(0,triangle(100	,100	,100	));
-EXPECT_EQ(2,triangle(100	,100	,199	));
+EXPECT_EQ(1,triangle(100	,100	,199	));
 EXPECT_EQ(3,triangle(100	,100	,200	));
 EXPECT_EQ(4,triangle(100	,100	,201	));
 EXPECT_EQ(4,triangle(100	,199	,0	));
@@ -363,7 +383,7 @@ TEST(Triangle,EquivalenceSR)
 EXPECT_EQ(0,triangle(5,5,5));
 EXPECT_EQ(1,triangle(2,2,3));
 EXPECT_EQ(2,triangle(3,4,5));
-EXPECT_EQ(3,triangle(4,4,2));
+EXPECT_EQ(3,triangle(4,2,2));
 EXPECT_EQ(4,triangle(-1,5,5));
 EXPECT_EQ(4,triangle(5,-1,5));
 EXPECT_EQ(4,triangle(5,5,-1));
