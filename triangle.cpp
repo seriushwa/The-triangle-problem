@@ -1,8 +1,7 @@
 #include<iostream>
 #include"gtest/gtest.h"
 #include"triangle.h"
-int triangle(int a,int b,int c)
-{
+int triangle(int a,int b,int c){
 	if((a<1)||(b<1)||(c<1))
 		return 4;//input too small
 	if((a>200)||(b>200)||(c>200))
