@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -fprofile-arcs -ftest-coverage  
-LNK = -lgtest
+LNK = -lgtest -lgcov
 
 all: DecisionTableTest BoundaryTest EquivalenceTest PathTest 
 DecisionTableTest: DecisionTableTest.cpp triangle.o
@@ -13,4 +13,9 @@ PathTest: PathTest.cpp triangle.o
 	$(CC) -o PathTest $(CFLAGS) $(LNK) PathTest.cpp triangle.o
 triangle.o: triangle.h triangle.cpp
 	$(CC) -c -o triangle.o $(CFLAGS) triangle.cpp
+clean:
+	rm -f *.o
+	rm -f *.gcda
+	rm -f *.gcno
+	rm -f *.gcov
 
